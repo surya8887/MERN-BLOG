@@ -1,16 +1,31 @@
-import jwt from 'jsonwebtoken'
-export const authenticate = async (req, _, next) => {
-    try {
-        const token = req.cookies.access_token
-        // console.log(token);
-        
-        if (!token) {
-            return next(403, 'Unathorized')
-        }
-        const decodeToken = jwt.verify(token, process.env.JWT_SECRET)
-        req.user = decodeToken
-        next()
-    } catch (error) {
-        next(500, error.message)
+import jwt from 'jsonwebtoken';
+import createError from 'http-errors';
+
+export const authenticate = (req, res, next) => {
+  try {
+    // 1. Grab token from cookies or Authorization header
+    const token =
+      req.cookies?.access_token ||
+      (req.headers.authorization || '').split(' ')[1];
+
+    if (!token) {
+      // 401 Unauthorized when no credentials are provided
+      return next(createError(401, 'Authentication token missing'));
     }
-}
+
+    // 2. Verify asynchronously
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        // 403 Forbidden when token is invalid or expired
+        return next(createError(403, 'Invalid or expired token'));
+      }
+
+      // 3. Attach decoded payload to req.user
+      req.user = decoded;
+      next();
+    });
+  } catch (err) {
+    // 500 Internal Server Error for anything else
+    next(createError(500, err.message));
+  }
+};
