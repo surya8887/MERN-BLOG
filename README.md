@@ -34,7 +34,7 @@ This is a full-stack blog application built with the MERN stack (MongoDB, Expres
 ## UI/UX Design
 
 The application’s design is inspired by a **modern and responsive blog template** available on Figma:
-👉 [Figma Design Link]([https://www.figma.com/design/mDm8Si9s3vQWiy5yAzN6xN/Free-Blog-Website-Template--Community-?node-id=401-1219&t=iHIHCoEVM8Nkhl3R-1](https://www.figma.com/proto/mDm8Si9s3vQWiy5yAzN6xN/Free-Blog-Website-Template--Community-?node-id=401-290&t=bMJtQloVqFXeXazr-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1))
+👉 [Figma Design Link](https://www.figma.com/proto/mDm8Si9s3vQWiy5yAzN6xN/Free-Blog-Website-Template--Community-?node-id=401-290&t=bMJtQloVqFXeXazr-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
 
 This design provides:
 
